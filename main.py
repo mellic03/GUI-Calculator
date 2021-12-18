@@ -1,6 +1,16 @@
 from tkinter import *
 from tkinter.constants import W, X
 from typing import Collection
+
+import os
+workingPath = os.path.dirname(__file__)
+
+# C math library
+from ctypes import *
+so_file = workingPath + "/mathlib/mathlib.so"
+mymath = CDLL(so_file)
+
+
 import globalVar as glob
 
 
@@ -9,19 +19,20 @@ def pushNum(x):
     display.config(text=glob.tempList)
 
 
-def addWorkingNum():
+def addNum():
 
     glob.state = "add"
 
-    calced = 0
-    for v in glob.tempList:
+    properNumber = 0
 
-        # index position glob.tempList.index(v)  # list length (len(glob.tempList) - 1)
-        calced += v * (10**(abs((glob.tempList.index(v) + 1) - len(glob.tempList))))
-        print(v * (10**(abs((glob.tempList.index(v) + 1) - len(glob.tempList)))))
+    for digit in glob.tempList:
+
+        # there is a bug here where if you enter a number like 66 or 11, it treats the ones column like a tens column
+        properNumber += digit * (10**(abs((glob.tempList.index(digit) + 1) - len(glob.tempList))))
+        print(digit)
 
     # add calced to working list
-    glob.workingList.append(calced)
+    glob.workingList.append(properNumber)
 
     # clear temp list
     glob.tempList = []
@@ -33,15 +44,17 @@ def calculate():
     calced = 0
     if (glob.state == "add"):
 
-        addWorkingNum()
+        addNum()
         for v in glob.workingList:
             calced += v
-    print(calced)
 
+    glob.workingList = []
+    glob.tempList = []
+    display.config(text=calced)
+    
 
 def calcState(state):
     glob.state = state
-
 
 def calculatorButtons(frame, x, y):
     # 0-3
@@ -77,7 +90,7 @@ def calculatorButtons(frame, x, y):
     equalsButton = Button(frame, text="=", width=x, height=y, command=lambda : calculate(), background="#5d5e5e")
     equalsButton.grid(column=5, row=4)
 
-    addButton = Button(frame, text="+", width=x, height=y, command=lambda : addWorkingNum(), background="#5d5e5e")
+    addButton = Button(frame, text="+", width=x, height=y, command=lambda : addNum(), background="#5d5e5e")
     addButton.grid(column=4, row=3)
 
     subtractButton = Button(frame, text="-", width=x, height=y, command=lambda : pushNum(0), background="#5d5e5e")
@@ -105,7 +118,7 @@ display.pack()
 gui = Frame(root)
 gui.pack(expand=True, side="bottom")
 
-calculatorButtons(gui, 3, 2)
+calculatorButtons(gui, 4, 2)
 
 
 root.mainloop()
