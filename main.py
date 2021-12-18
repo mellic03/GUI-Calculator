@@ -91,7 +91,7 @@ def calculatorButtons(frame, x, y):
 
 
 root = Tk()
-root.title("The Cumculator")
+root.title("Calculator")
 root.geometry("500x600-2680+200")
 root.configure(background="#1c1c1c")
 
