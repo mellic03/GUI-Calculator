@@ -1,0 +1,5 @@
+workingList = []
+
+tempList = []
+
+state = "add"
