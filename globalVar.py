@@ -1,5 +1,7 @@
-workingList = []
+workingList = [0]
 
-tempList = []
+displayList = []
 
 state = "add"
+
+sign = 1
