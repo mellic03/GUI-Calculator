@@ -6,9 +6,9 @@ import os
 workingPath = os.path.dirname(__file__)
 
 # C math library
-from ctypes import *
-so_file = workingPath + "/mathlib/mathlib.so"
-mymath = CDLL(so_file)
+#from ctypes import *
+#so_file = workingPath + "/mathlib/mathlib.so"
+#mymath = CDLL(so_file)
 
 
 import globalVar as glob
@@ -40,7 +40,6 @@ def pushDisplayToWorkingList():
 def addNum():
     pushDisplayToWorkingList()
     glob.sign = 1
-
 
 def subtractNum():
     pushDisplayToWorkingList()
