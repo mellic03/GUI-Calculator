@@ -7,16 +7,6 @@ int factorial(int x) {
     }
 }
 
-float getEuler() {
-
-    float eulersNum = 0;
-
-    for (int i = 0; i < 20; i++) {
-        eulersNum += (float)1 / (float)factorial(i);
-    }
-
-    return eulersNum;
-}
 
 float exponent(float x) {
 
