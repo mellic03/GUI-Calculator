@@ -4,7 +4,7 @@ import calculator
 
 root = Tk()
 root.title("Calculator")
-root.geometry("275x300")#-2680+200")
+root.geometry("275x350")#-2680+200")
 root.configure(background="#1c1c1c")
 
 

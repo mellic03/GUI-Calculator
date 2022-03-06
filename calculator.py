@@ -2,9 +2,9 @@ import os
 workingPath = os.path.dirname(__file__)
 
 # C math library
-from ctypes import *
-so_file = workingPath + "/mathlib/mathlib.so"
-mathlib = CDLL(so_file)
+#from ctypes import *
+#so_file = workingPath + "/mathlib/mathlib.so"
+#mathlib = CDLL(so_file)
 
 
 from tkinter import *
@@ -79,6 +79,8 @@ class Calculator():
         backSpaceButton = Button(self.frame, text="BKSP", width=width, height=height, command=lambda : self.backSpace(), background="#5d5e5e")
         backSpaceButton.grid(column=4, row=1)
 
+        factorialButton = Button(self.frame, text="!", width=width, height=height, command=lambda : self.backSpace(), background="#5d5e5e")
+        factorialButton.grid(column=6, row=1)
 
     def refreshText(self, textBox, OPTION):
         if (OPTION == "refresh"):
